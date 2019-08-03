@@ -2,32 +2,25 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace StudentExercises.Models
+namespace StudentExercises
 {
      class Cohort
     {
-        public string Name { get; set; }
+        public string CohortName { get; set; }
 
-        public List<Student> Students { get; set; }
+        public List<Student> StudentList { get; set; }
 
-        public List<Instructor> Instructors { get; set; }
+        public List<Instructor> InstructorList { get; set; }
 
-
-        public void addInstructorToCohort(Instructor instructor)
+        public Cohort(string Cohortname)
         {
-            instructor.Cohort = Name;
-
-            Instructors.Add(instructor);
+            CohortName = Cohortname;
+            StudentList = new List<Student>();
+            InstructorList = new List<Instructor>();
         }
 
-        public void addStudentToCohort(Student student)
+        public Cohort()
         {
-            student.Cohort = Name;
-
-            Students.Add(student);
         }
-    
-
-        
     }
 }

@@ -1,51 +1,53 @@
 ﻿using System;
-using StudentExercises.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace StudentExercises
 {
     class Program
     {
         static void Main(string[] args)
+
         {
-            var csExercise = new Exercise()
+            var studentExercise = new Exercise()
             {
-                Name = "C# Exercise",
+                Name = "Student Exercise",
                 Language = "C#"
             };
 
             var jsExercise = new Exercise()
             {
-                Name = "JavaScript Exercise",
+                Name = "Chicken Monkey",
                 Language = "JavaScript"
             };
 
-            var phExercise = new Exercise()
+            var journal = new Exercise()
             {
-                Name = "Python Exercise",
-                Language = "Python"
+                Name = "Journal",
+                Language = "HTML"
             };
 
             var sqlExercise = new Exercise()
             {
-                Name = "SQL Exercise",
+                Name = "Data",
                 Language = "SQL"
             };
 
             var c30 = new Cohort()
             {
-                Name = "Day Cohort 30"
+                CohortName = "Day Cohort 30"
             };
             var c31 = new Cohort()
             {
-                Name = "Day Cohort 31"
+                CohortName = "Day Cohort 31"
             };
             var c32 = new Cohort()
             {
-                Name = "Day Cohort 32"
+                CohortName = "Day Cohort 32"
             };
             var c33 = new Cohort()
             {
-                Name = "Day Cohort 33"
+                CohortName = "Day Cohort 33"
             };
 
             var adam = new Instructor
@@ -111,12 +113,53 @@ namespace StudentExercises
             c32.addStudentToCohort(logan);
             c32.addStudentToCohort(jake);
 
-            jisie.AssignExercise(logan, csExercise);
+            jisie.AssignExercise(logan, studentExercise);
             jisie.AssignExercise(logan, jsExercise);
-            adam.AssignExercise(dek, csExercise);
+            adam.AssignExercise(dek, studentExercise);
             adam.AssignExercise(dek, jsExercise);
-            brian.AssignExercise(jake, csExercise);
+            brian.AssignExercise(jake, studentExercise);
             brian.AssignExercise(jake, jsExercise);
+
+            var AllStudents = new List <Student>();
+            {
+                AllStudents.Add(logan);
+                AllStudents.Add(dek);
+                AllStudents.Add(jake);                  
+            };
+
+            var AllInstructors = new List<Instructor>();
+            {
+                AllInstructors.Add(adam);
+                AllInstructors.Add(brian);
+                AllInstructors.Add(jisie);
+            };
+
+            var AllExercises = new List<Exercise>();
+            {
+                AllExercises.Add(jsExercise);
+                AllExercises.Add(journal);
+                AllExercises.Add(studentExercise);
+                AllExercises.Add(sqlExercise);
+            };
+
+            var AllCohorts = new List<Cohort>();
+            {
+                AllCohorts.Add(c30);
+                AllCohorts.Add(c31);
+                AllCohorts.Add(c32);
+                AllCohorts.Add(c33);
+            };
+
+            List<Exercise> JSExercise = (from exercise in AllExercises
+                                         where exercise.Language == "JavaScript"
+                                         select exercise).ToList();
+            foreach (Exercise exer in JSExercise)
+            {
+                Console.WriteLine($"List of JS exercises: {exer.Name}");
+            }
+
+            List<Student> studentsInChorty = ( from Student in AllStudents
+                                               where Student.cohort)
         }
     }
 }

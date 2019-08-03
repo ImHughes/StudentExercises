@@ -1,23 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace StudentExercises.Models
+
+namespace StudentExercises
 {
-    class Instructor
+    class Instructor : NSSPerson
     {
-        public string FirstName { get; set; }
-
-        public string LastName { get; set; }
-
-        public string SlackHandle { get; set; }
+        internal string _cohort;
 
         public string Specialty { get; set; }
+        public object FirstName { get; internal set; }
+        public object LastName { get; internal set; }
 
+        public Instructor(string firstname, string lastname, string slackhandle, string specialty, string cohort)
+        {
+            _cohort = cohort;
+            FirstName = firstname;
+            LastName = lastname;
+            SlackHandle = slackhandle;
+            Specialty = specialty;
+        }
         public void AssignExercise(Student student, Exercise exercise)
-            {
-            student.Exercises.Add(exercise);
-            }
-
+        {
+            student.ExerciseList.Add(exercise);
+        }
     }
 }

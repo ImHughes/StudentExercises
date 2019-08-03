@@ -2,20 +2,33 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace StudentExercises.Models
+namespace StudentExercises
 {
-    class Student
+    internal class Student : NSSPerson
     {
-        public string FirstName { get; set; }
+        internal string _cohort;
 
-        public string LastName { get; set; }
+        public List<Exercise> ExerciseList { get; set; } = new List<Exercise>();
+        public object FirstName { get; internal set; }
+        public object LastName { get; internal set; }
 
-        public string SlackHandle { get; set; }
+        public Student(string firstname, string lastname, string slackhandle, string cohort)
+        {
+            FirstName = firstname;
+            LastName = lastname;
+            SlackHandle = slackhandle;
+            _cohort = cohort;
+        }
 
-        public int CohortId { get; set; }
-
-        public List<Exercise> Exercises { get; set; } = new List<Exercise>();
-
-
+        public void ViewAssignedExercises()
+        {
+            Console.WriteLine($"{FirstName} {LastName} list of exercises include: ");
+            Console.WriteLine("----------------------------");
+            foreach (Exercise exercise in ExerciseList)
+            {
+                Console.WriteLine($"{exercise.Name}: written in {exercise.Language}");
+                Console.WriteLine("");
+            };
+        }
     }
 }
